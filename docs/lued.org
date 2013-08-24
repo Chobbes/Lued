@@ -6,4 +6,4 @@
   Lued is a debugger. The eventual goal is to embed lua and do some
   fanciness with it.
 
-  We're not there yet.
+  We're not quite there yet.
