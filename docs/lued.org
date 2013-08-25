@@ -9,7 +9,11 @@
   We're not quite there yet.
 
 * Mac OS X
-  It seems that some things are different on the Apple side of
-  things. For instance *ptrace* on apple is much different.
+  For now support for Mac OS X is to be left on the side. It seems
+  that some things are different on the Apple side of things. For
+  instance *ptrace* on apple is much different.
 
   [[http://uninformed.org/index.cgi?v=4&a=3&p=14][OS X ptrace info]]
+
+  In the future this will hopefully be supported, but for now it's a
+  bit of a headache to deal with multiple platforms.
