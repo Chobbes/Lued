@@ -7,3 +7,9 @@
   fanciness with it.
 
   We're not quite there yet.
+
+* Mac OS X
+  It seems that some things are different on the Apple side of
+  things. For instance *ptrace* on apple is much different.
+
+  [[http://uninformed.org/index.cgi?v=4&a=3&p=14][OS X ptrace info]]
