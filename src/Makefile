@@ -21,6 +21,8 @@
 # SOFTWARE.
 
 
+CFLAGS += -g
+
 lued : lued.o
 	$(CC) $^ $(LDFLAGS) -o $@
 
