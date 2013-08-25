@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 
 	fprintf(stderr, "Execution of \"%s\" failed!\n", argv[1]);
 	return -1;
-    }    
+    }
 
     return 0;
 }
