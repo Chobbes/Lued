@@ -23,12 +23,38 @@
 */
 
 #include <stdio.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/ptrace.h>
 #include <sys/wait.h>
 
 
+void usage(const char *program_name)
+{
+    fprintf(stderr, "Usage: %s <program> [args]\n", program_name);
+}
+
+
 int main(int argc, char *argv[])
 {
+    if (argc < 2) {
+	fprintf(stderr, "Too few arguments!\n");
+	usage(argv[0]);
+
+	return -1;
+    }
+
+    /* Need to fork - parent process traces, child is traced */
+    pid_t pid = fork();
+
+    if (0 == pid) {
+	/* Child process asks to be traced, and execs the desired program. */
+	ptrace(PT_TRACE_ME, 0, 0, 0);
+	execv(argv[1], &argv[1]);
+
+	fprintf(stderr, "Execution of \"%s\" failed!\n", argv[1]);
+	return -1;
+    }
+
     return 0;
 }
