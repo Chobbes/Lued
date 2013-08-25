@@ -49,11 +49,32 @@ int main(int argc, char *argv[])
 
     if (0 == pid) {
 	/* Child process asks to be traced, and execs the desired program. */
-	ptrace(PT_TRACE_ME, 0, 0, 0);
+	ptrace(PT_TRACE_ME, pid, NULL, 0);
 	execvp(argv[1], &argv[1]);
 
 	fprintf(stderr, "Execution of \"%s\" failed!\n", argv[1]);
 	return -1;
+    }
+
+    int wait_status;
+
+    while (1) {
+	int wait_pid = wait(&wait_status);
+
+	if (wait_pid == pid) {
+	    if (WIFSTOPPED(wait_status)) {
+		/* Just step again */
+		ptrace(PT_STEP, pid, NULL, 0);
+	    }
+	    else if (WIFEXITED(wait_status)) {
+		printf("Process \"%s\" exited normally.\n", argv[1]);
+		return 0;
+	    }
+	    else {
+		fprintf(stderr, "Something strange happened: %X\n", wait_status);
+		return -1;
+	    }
+	}
     }
 
     return 0;
