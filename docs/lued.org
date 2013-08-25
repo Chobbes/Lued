@@ -17,3 +17,7 @@
 
   In the future this will hopefully be supported, but for now it's a
   bit of a headache to deal with multiple platforms.
+
+* BSD Systems
+  Currently we rely upon GNU make features for the Makefile. You will
+  need to install gmake.
