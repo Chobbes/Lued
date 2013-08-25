@@ -49,12 +49,12 @@ int main(int argc, char *argv[])
 
     if (0 == pid) {
 	/* Child process asks to be traced, and execs the desired program. */
-	ptrace(PT_TRACE_ME, 0, 0, 0);
+	ptrace(PTRACE_TRACEME, 0, 0, 0);
 	execvp(argv[1], &argv[1]);
 
 	fprintf(stderr, "Execution of \"%s\" failed!\n", argv[1]);
 	return -1;
-    }
+    }    
 
     return 0;
 }
