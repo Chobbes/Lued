@@ -7,10 +7,11 @@
   fanciness with it.
 
   The hope is to make this multiplatform in the future, but for now we
-  are just going to meander through and make everything work on
-  Linux. There are a lot of platform specific things which will need
-  to be abstracted out in the future. It's not too bad, but I don't
-  want to focus on that right away.
+  are just going to meander through and make everything work on 64-bit
+  Linux (and yes, that really does matter). There are a lot of
+  platform specific things which will need to be abstracted out in the
+  future. It's not too bad, but I don't want to focus on that right
+  away.
 
   We're not quite there yet.
 
