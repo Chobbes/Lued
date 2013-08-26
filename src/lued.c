@@ -27,6 +27,8 @@
 #include <sys/types.h>
 #include <sys/ptrace.h>
 #include <sys/wait.h>
+#include <sys/user.h>
+#include <sys/reg.h>
 
 
 void usage(const char *program_name)
@@ -57,13 +59,18 @@ int main(int argc, char *argv[])
     }
 
     int wait_status;
+    struct user_regs_struct registers;
 
     while (1) {
 	int wait_pid = wait(&wait_status);
 
 	if (wait_pid == pid) {
 	    if (WIFSTOPPED(wait_status)) {
-		/* Just step again */
+		/* Fetch and print the instruction pointer */
+		ptrace(PT_GETREGS, pid, NULL, &registers);
+		printf("IP: %llX\n", registers.rip);
+
+		/* And then just continue tip-toeing through the program */
 		ptrace(PT_STEP, pid, NULL, 0);
 	    }
 	    else if (WIFEXITED(wait_status)) {
