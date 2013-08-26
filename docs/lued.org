@@ -6,6 +6,12 @@
   Lued is a debugger. The eventual goal is to embed lua and do some
   fanciness with it.
 
+  The hope is to make this multiplatform in the future, but for now we
+  are just going to meander through and make everything work on
+  Linux. There are a lot of platform specific things which will need
+  to be abstracted out in the future. It's not too bad, but I don't
+  want to focus on that right away.
+
   We're not quite there yet.
 
 * Mac OS X
@@ -21,3 +27,6 @@
 * BSD Systems
   Currently we rely upon GNU make features for the Makefile. You will
   need to install gmake.
+
+  The register structures on OpenBSD are different. We will have to
+  abstract this in order to make everything work nicely.
