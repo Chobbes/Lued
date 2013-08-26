@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 
     if (0 == pid) {
 	/* Child process asks to be traced, and execs the desired program. */
-	ptrace(PT_TRACE_ME, pid, NULL, 0);
+	ptrace(PT_TRACE_ME, pid, NULL, NULL);
 	execvp(argv[1], &argv[1]);
 
 	fprintf(stderr, "Execution of \"%s\" failed!\n", argv[1]);
@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
     }
 
     int wait_status;
+    long instruction;
     struct user_regs_struct registers;
 
     while (1) {
@@ -66,9 +67,10 @@ int main(int argc, char *argv[])
 
 	if (wait_pid == pid) {
 	    if (WIFSTOPPED(wait_status)) {
-		/* Fetch and print the instruction pointer */
+		/* Fetch and print the instruction pointer / instruction */
 		ptrace(PT_GETREGS, pid, NULL, &registers);
-		printf("IP: %llX\n", registers.rip);
+		instruction = ptrace(PTRACE_PEEKTEXT, pid, registers.rip, NULL);
+		printf("IP: %llX -> %lX\n", registers.rip, instruction);
 
 		/* And then just continue tip-toeing through the program */
 		ptrace(PT_STEP, pid, NULL, 0);
