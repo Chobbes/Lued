@@ -15,6 +15,16 @@
 
   We're not quite there yet.
 
+* Libopcodes
+  Documentation for this is hard to find, so I am going to include
+  some of the information that I discover here... I have found one
+  decent looking potential resource [[http://www.toothycat.net/wiki/wiki.pl?Binutils/libopcodes][here]]. Hopefully this proves to be
+  useful!
+
+** Includes
+   The main header file which needs to be included to use this library
+   is *dis-asm.h*.
+
 * Mac OS X
   For now support for Mac OS X is to be left on the side. It seems
   that some things are different on the Apple side of things. For
