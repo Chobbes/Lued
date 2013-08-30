@@ -29,6 +29,7 @@
 #include <sys/wait.h>
 #include <sys/user.h>
 #include <sys/reg.h>
+#include <dis-asm.h>
 
 
 void usage(const char *program_name)
