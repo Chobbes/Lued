@@ -25,6 +25,21 @@
    The main header file which needs to be included to use this library
    is *dis-asm.h*.
 
+** Insns
+   Apparently this library uses "insns" as a shortened form of
+   "instructions". This is very confusing, but I'm pretty sure that's
+   what this means.
+
+** disassemble_info
+   This is a structure that is used to pass information to / from
+   instruction decoders. A glorious coagulation of state.
+
+   This has a lot of fields for dealing with multiple
+   architectures. For example, there are fields for if the endianness
+   of the code is different from the endianness of the data, fields to
+   handle instruction sets which change during run time, and all
+   manner of crazy things.
+ 
 * Mac OS X
   For now support for Mac OS X is to be left on the side. It seems
   that some things are different on the Apple side of things. For
